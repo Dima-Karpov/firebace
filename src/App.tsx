@@ -1,26 +1,102 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {FC, useEffect, useState} from 'react';
+import './App.module.css';
 
-function App() {
+import {EmptiString} from './constans/index';
+import appFire from './fire';
+
+import {LoginForm} from './components/LoginForm/LoginForm';
+import {Profile} from './components/Profile/Profile';
+
+
+
+export const App: FC = () => {
+  const [user, setUser] = useState<string>(EmptiString);
+  const [email, setEmail] = useState<string>(EmptiString);
+  const [password, setPassword] = useState<string>(EmptiString);
+  const [emailError, setEmailError] = useState<string>(EmptiString);
+  const [passwordError, setPasswordError] = useState<string>(EmptiString);
+  const [hasAccount, setHasAccount] = useState<boolean>(false);
+
+  const clearInputs = () => {
+    setEmail(EmptiString);
+    setPassword(EmptiString);
+  };
+  const clearError = () => {
+    setEmailError(EmptiString);
+    setPasswordError(EmptiString);
+  };
+  const handleLogin = () => {
+    clearError();
+    appFire
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .catch((error: any) => {
+        switch (error.code) {
+          case 'auth/invalid-email':
+          case 'auth/user-disabled':
+          case 'auth/user-not-found':
+            setEmailError(error.message);
+            break;
+          case 'auth/wrong-password':
+            setPasswordError(error.message);
+            break;
+        }
+      });
+  };
+  const handleSignUp = () => {
+    clearError();
+    appFire
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch((error: any) => {
+        switch (error.code) {
+          case 'auth/email-already-in-use':
+          case 'auth/invalid-email':
+            setEmailError(error.message);
+            break;
+          case 'auth/weak-password':
+            setPasswordError(error.message);
+            break;
+        }
+      });
+  };
+  const handleLogout = () => {
+    appFire.auth().signOut();
+  };
+  const authListener = () => {
+    appFire.auth().onAuthStateChanged((user: string) => {
+      if (user) {
+        clearInputs();
+        setUser(user);
+      } else {
+        setUser(EmptiString)
+      }
+    })
+  };
+
+  useEffect(() => {
+    authListener();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      {!user ? (
+        <LoginForm
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          hasAccount={hasAccount}
+          setHasAccount={setHasAccount}
+          emailError={emailError}
+          passwordError={passwordError}
+          handleSingUp={handleSignUp}
+        />
+      ) : (
+        <Profile handleLogout={handleLogout} />
+      )}
     </div>
   );
-}
+};
 
-export default App;

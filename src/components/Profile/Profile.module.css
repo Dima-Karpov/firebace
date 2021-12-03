@@ -1,0 +1,37 @@
+.profile {
+	width: 100%;
+	min-height: 100vh;
+	background: rgb(196, 196, 243);
+}
+
+.profile nav {
+	background: rgb(73 137 220 / 95%);
+	width: 100%;
+	padding: 20px 40px;
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+}
+
+.profile nav h2 {
+	color: #fff;
+}
+
+.profile nav button {
+	width: 86px;
+	padding: 8px 0;
+	background: #3a2b58;
+}
+
+button {
+	border: none;
+	outline: none;
+	width: 100%;
+	padding: 15px 0;
+	color: #fff;
+	font-size: 16px;
+	letter-spacing: 1px;
+	background: #14101d;
+	border-radius: 8px;
+	cursor: pointer;
+}
