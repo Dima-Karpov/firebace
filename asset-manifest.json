@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/firebace/static/css/main.7b0ba92a.chunk.css",
+    "main.js": "/firebace/static/js/main.dd11a2e7.chunk.js",
+    "main.js.map": "/firebace/static/js/main.dd11a2e7.chunk.js.map",
+    "runtime-main.js": "/firebace/static/js/runtime-main.fc2c9675.js",
+    "runtime-main.js.map": "/firebace/static/js/runtime-main.fc2c9675.js.map",
+    "static/js/2.19f4b99f.chunk.js": "/firebace/static/js/2.19f4b99f.chunk.js",
+    "static/js/2.19f4b99f.chunk.js.map": "/firebace/static/js/2.19f4b99f.chunk.js.map",
+    "static/js/3.166c7734.chunk.js": "/firebace/static/js/3.166c7734.chunk.js",
+    "static/js/3.166c7734.chunk.js.map": "/firebace/static/js/3.166c7734.chunk.js.map",
+    "index.html": "/firebace/index.html",
+    "static/css/main.7b0ba92a.chunk.css.map": "/firebace/static/css/main.7b0ba92a.chunk.css.map",
+    "static/js/2.19f4b99f.chunk.js.LICENSE.txt": "/firebace/static/js/2.19f4b99f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fc2c9675.js",
+    "static/js/2.19f4b99f.chunk.js",
+    "static/css/main.7b0ba92a.chunk.css",
+    "static/js/main.dd11a2e7.chunk.js"
+  ]
+}
